@@ -1,8 +1,8 @@
 package com.mreorhan.ws.service.impl;
 
 import com.mreorhan.ws.entity.UserEntity;
+import com.mreorhan.ws.repositories.UserRepository;
 import com.mreorhan.ws.service.UserService;
-import com.mreorhan.ws.shared.UserRepository;
 import com.mreorhan.ws.shared.Utils;
 import com.mreorhan.ws.shared.dto.UserDto;
 import org.springframework.beans.BeanUtils;

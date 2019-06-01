@@ -1,4 +1,4 @@
-package com.mreorhan.ws.shared;
+package com.mreorhan.ws.repositories;
 
 import com.mreorhan.ws.entity.UserEntity;
 import org.springframework.data.repository.CrudRepository;
