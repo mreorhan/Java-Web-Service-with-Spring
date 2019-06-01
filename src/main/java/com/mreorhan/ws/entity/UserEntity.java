@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Entity(name = "users")
 public class UserEntity implements Serializable {
-    private static final long serialVersionUID=4L;
+    private static final long serialVersionUID = 4L;
     @Id
     @GeneratedValue
     private long id;
@@ -16,13 +16,13 @@ public class UserEntity implements Serializable {
     @Column(nullable = false)
     private String userId;
 
-    @Column(nullable = false,length = 50)
+    @Column(nullable = false, length = 50)
     private String firstName;
 
-    @Column(nullable = false,length = 50)
+    @Column(nullable = false, length = 50)
     private String lastName;
 
-    @Column(nullable = false,length = 120)
+    @Column(nullable = false, length = 120)
     private String email;
 
     @Column(nullable = false)
@@ -32,7 +32,7 @@ public class UserEntity implements Serializable {
     private String emailVerificationToken;
 
     @Column(nullable = false)
-    private boolean emailVerificationStatus=false;
+    private boolean emailVerificationStatus = false;
 
     public long getId() {
         return id;
