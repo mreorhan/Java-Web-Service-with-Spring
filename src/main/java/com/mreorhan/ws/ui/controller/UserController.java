@@ -12,6 +12,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("users")// http://localhost:8080/users
 public class UserController {
@@ -60,6 +63,26 @@ public class UserController {
 
         return returnValue;
 
+    }
+
+    @GetMapping
+    public List<UserRest> getUsers(
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "limit", defaultValue = "25") int limit) {
+
+        List<UserRest> returnValue = new ArrayList<>();
+
+        if (page > 0) page -= 1;
+
+        List<UserDto> users = userService.getUsers(page, limit);
+
+        for (UserDto userDto : users) {
+            UserRest userRest = new UserRest();
+            BeanUtils.copyProperties(userDto, userRest);
+            returnValue.add(userRest);
+        }
+
+        return returnValue;
     }
 
     @DeleteMapping(path = "/{id}")
