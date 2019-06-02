@@ -1,7 +1,7 @@
 package com.mreorhan.ws.ui.controller;
 
-import com.mreorhan.ws.shared.dto.UserDto;
 import com.mreorhan.ws.service.UserService;
+import com.mreorhan.ws.shared.dto.UserDto;
 import com.mreorhan.ws.ui.model.request.UserDetailsRequestModel;
 import com.mreorhan.ws.ui.model.response.UserRest;
 import org.springframework.beans.BeanUtils;
@@ -15,13 +15,16 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping
-    public String getUser(){
-        return  "get user";
+    @GetMapping(path = "/{id}")
+    public UserRest getUser(@PathVariable String id) {
+        UserRest returnValue = new UserRest();
+        UserDto userDto = userService.getUserByUserId(id);
+        BeanUtils.copyProperties(userDto, returnValue);
+        return returnValue;
     }
 
     @PostMapping
-    public UserRest createUser(@RequestBody UserDetailsRequestModel userDetailsRequestModel){
+    public UserRest createUser(@RequestBody UserDetailsRequestModel userDetailsRequestModel) {
 
         UserRest returnValue = new UserRest();
         UserDto userDto = new UserDto();
@@ -34,12 +37,13 @@ public class UserController {
     }
 
     @PutMapping
-    public String updateUser(){
+    public String updateUser() {
         return "update user";
 
     }
+
     @DeleteMapping
-    public String deleteUser(){
+    public String deleteUser() {
         return "delete user";
     }
 }
